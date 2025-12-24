@@ -18,6 +18,11 @@ interface PremioCompleto extends PremioSupabase {
   tipoLabel: string
 }
 
+type PremiosChangePayload = {
+  eventType: 'INSERT' | 'UPDATE' | 'DELETE'
+  new: Partial<PremioSupabase> | null
+}
+
 // Mapeamento de informações visuais por tipo de prêmio
 const premioConfig: Record<string, { descricao: string; imagem: string; corFundo: string; tipoLabel: string }> = {
   coluna1: {
@@ -76,7 +81,8 @@ export default function Premios() {
           setPremios(premiosCompletos)
         }
       } catch (error) {
-        console.error('Erro ao buscar prêmios:', error)
+        void error
+        setPremios([])
       } finally {
         setLoading(false)
       }
@@ -89,15 +95,12 @@ export default function Premios() {
       .channel('premios-updates')
       .on('postgres_changes', 
         { event: '*', schema: 'public', table: 'premios' },
-        (payload: any) => {
+        (payload: PremiosChangePayload) => {
           // Atualizar o prêmio específico que mudou
-          setPremios(prev => 
-            prev.map(p => 
-              p.id === payload.new.id 
-                ? { ...p, ...payload.new }
-                : p
-            )
-          )
+          const updated = payload.new
+          if (!updated?.id) return
+
+          setPremios(prev => prev.map(p => (p.id === updated.id ? { ...p, ...updated } : p)))
         }
       )
       .subscribe()

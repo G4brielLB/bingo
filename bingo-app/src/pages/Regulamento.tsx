@@ -12,10 +12,9 @@ export default function Regulamento() {
           <svg className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
-          <h1 className="text-4xl md:text-5xl font-light mb-4 tracking-tight">Regulamento Oficial</h1>
-          <p className="text-red-100 text-lg md:text-xl font-light">
-            Bingo dos Nietenses 2025
-          </p>
+          <h1 className="text-3xl md:text-5xl font-light mb-4 tracking-tight">
+            REGULAMENTO – BINGO DOS NIETENSES 2025
+          </h1>
         </div>
       </section>
 
@@ -23,14 +22,6 @@ export default function Regulamento() {
       <section className="py-16 md:py-24 bg-gray-50">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="bg-white rounded-xl shadow-sm p-8 md:p-12 space-y-12">
-            
-            {/* Introdução */}
-            <div>
-              <p className="text-gray-700 leading-relaxed text-lg font-light">
-                Este regulamento estabelece as regras e condições para participação no Bingo dos Nietenses 2025. 
-                A participação no evento implica na aceitação integral deste regulamento.
-              </p>
-            </div>
 
             {/* Seção 1 */}
             <div>
@@ -39,9 +30,9 @@ export default function Regulamento() {
                 Aquisição de Cartelas
               </h2>
               <div className="space-y-3 text-gray-700 leading-relaxed ml-8">
-                <p>• Cada participante pode adquirir <strong className="text-gray-900">quantas cartelas desejar</strong>, sem limite máximo.</p>
-                <p>• As cartelas <strong className="text-gray-900">não são nominais</strong> e podem ser utilizadas por qualquer pessoa.</p>
-                <p>• Após a aquisição, não serão permitidas devoluções ou trocas de cartelas.</p>
+                <p>
+                  • Os participantes podem adquirir quantas cartelas desejarem, mas, após a aquisição, não será permitido a troca ou a devolução de nenhuma cartela.
+                </p>
               </div>
             </div>
 
@@ -52,37 +43,36 @@ export default function Regulamento() {
                 Premiação
               </h2>
               <div className="space-y-4 ml-8">
-                <p className="text-gray-700 leading-relaxed">
-                  O Bingo dos Nietenses 2025 distribuirá <strong className="text-gray-900">5 (cinco) prêmios</strong> na seguinte ordem:
-                </p>
                 <div className="bg-red-50 rounded-lg p-6 space-y-3">
                   <div className="flex items-start gap-3">
-                    <span className="text-red-600 font-semibold min-w-[140px]">1º Prêmio:</span>
-                    <span className="text-gray-800">Coluna 1 - Primeiro participante a completar uma coluna inteira</span>
+                    <span className="text-red-600 font-semibold min-w-[140px]">COLUNA 1:</span>
+                    <span className="text-gray-800">
+                      O primeiro participante que completar uma coluna. Depois de completar, ele não poderá mais concorrer ao prêmio da COLUNA 2, somente aos da LINHA 1 e 2 e da CARTELA CHEIA.
+                    </span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="text-red-600 font-semibold min-w-[140px]">2º Prêmio:</span>
-                    <span className="text-gray-800">Coluna 2 - Segundo participante a completar uma coluna inteira</span>
+                    <span className="text-red-600 font-semibold min-w-[140px]">COLUNA 2:</span>
+                    <span className="text-gray-800">
+                      O segundo participante que completar uma coluna. Depois de completar, ele poderá concorrer aos prêmios da LINHA 1 e 2 e da CARTELA CHEIA.
+                    </span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="text-red-600 font-semibold min-w-[140px]">3º Prêmio:</span>
-                    <span className="text-gray-800">Linha 1 - Primeiro participante a completar uma linha inteira</span>
+                    <span className="text-red-600 font-semibold min-w-[140px]">LINHA 1:</span>
+                    <span className="text-gray-800">
+                      O primeiro participante que completar uma linha. Depois de completar, ele não poderá mais concorrer ao prêmio da LINHA 2, somente ao da CARTELA CHEIA.
+                    </span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="text-red-600 font-semibold min-w-[140px]">4º Prêmio:</span>
-                    <span className="text-gray-800">Linha 2 - Segundo participante a completar uma linha inteira</span>
+                    <span className="text-red-600 font-semibold min-w-[140px]">LINHA 2:</span>
+                    <span className="text-gray-800">
+                      O segundo participante que completar uma linha. Depois de completar, ele poderá concorrer ao prêmio da CARTELA CHEIA.
+                    </span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="text-red-600 font-semibold min-w-[140px]">5º Prêmio:</span>
-                    <span className="text-gray-800">Cartela Cheia - Primeiro participante a completar todos os números da cartela</span>
+                    <span className="text-red-600 font-semibold min-w-[140px]">CARTELA CHEIA:</span>
+                    <span className="text-gray-800">O primeiro participante que completar uma cartela inteira.</span>
                   </div>
                 </div>
-                <p className="text-gray-700 leading-relaxed mt-4">
-                  • Os prêmios <strong className="text-gray-900">não podem ser trocados</strong> por dinheiro ou outros bens.
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  • O bingo <strong className="text-gray-900">somente será encerrado</strong> após a distribuição de todos os 5 prêmios.
-                </p>
               </div>
             </div>
 
@@ -90,68 +80,18 @@ export default function Regulamento() {
             <div>
               <h2 className="text-2xl font-medium text-gray-900 mb-4 flex items-center gap-3">
                 <span className="text-red-600">3.</span>
-                Regras de Conquista
-              </h2>
-              <div className="space-y-4 ml-8">
-                <p className="text-gray-700 leading-relaxed">
-                  Para garantir a distribuição justa dos prêmios entre diferentes participantes, aplicam-se as seguintes restrições:
-                </p>
-                <div className="space-y-3 text-gray-700 leading-relaxed">
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <p className="font-medium text-gray-900 mb-2">Linha:</p>
-                    <p>• Um participante que ganhar um prêmio de <strong>Linha</strong> (Linha 1 ou Linha 2) <strong className="text-gray-900">não poderá mais ganhar outro prêmio de Linha</strong>.</p>
-                    <p>• No entanto, poderá ainda concorrer aos prêmios de <strong>Coluna</strong> e <strong>Cartela Cheia</strong>.</p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <p className="font-medium text-gray-900 mb-2">Coluna:</p>
-                    <p>• Um participante que ganhar um prêmio de <strong>Coluna</strong> (Coluna 1 ou Coluna 2) <strong className="text-gray-900">não poderá mais ganhar outro prêmio de Coluna</strong>.</p>
-                    <p>• No entanto, poderá ainda concorrer aos prêmios de <strong>Linha</strong> e <strong>Cartela Cheia</strong>.</p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <p className="font-medium text-gray-900 mb-2">Cartela Cheia:</p>
-                    <p>• Todos os participantes podem concorrer à <strong>Cartela Cheia</strong>, independentemente de terem ganho prêmios anteriores.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Seção 4 */}
-            <div>
-              <h2 className="text-2xl font-medium text-gray-900 mb-4 flex items-center gap-3">
-                <span className="text-red-600">4.</span>
-                Critério de Desempate
+                Regras de Desempate
               </h2>
               <div className="space-y-3 text-gray-700 leading-relaxed ml-8">
-                <p>
-                  Em caso de <strong className="text-gray-900">dois ou mais participantes</strong> completarem simultaneamente a mesma modalidade 
-                  (Linha, Coluna ou Cartela Cheia), será realizado o seguinte procedimento de desempate:
-                </p>
                 <div className="bg-amber-50 border-l-4 border-amber-400 p-6 my-4">
                   <h3 className="font-semibold text-gray-900 mb-3">Procedimento de Desempate:</h3>
-                  <ol className="space-y-2 list-decimal list-inside">
-                    <li>Será realizado um sorteio de <strong>um único número</strong> adicional.</li>
-                    <li>O participante que <strong>possuir esse número em sua cartela</strong> vencedora será declarado o ganhador.</li>
-                    <li>Caso <strong>nenhum</strong> dos participantes empatados possua o número sorteado, <strong>ou mais de um possua</strong>, 
-                    será sorteado um novo número, repetindo o processo até que haja um único vencedor.</li>
-                  </ol>
+                  <p>
+                    • Se mais de um participante completar uma coluna, linha ou cartela cheia ao mesmo tempo, o desempate ocorrerá com cada participante sorteando um número. Quem sortear o número maior, leva o prêmio.
+                  </p>
+                  <p className="mt-3">
+                    • É importante ressaltar que os números sorteados no desempate retornarão à Roleta.
+                  </p>
                 </div>
-                <p className="text-sm text-gray-600 italic">
-                  * Em situações excepcionais, a organização do evento reserva-se o direito de aplicar critérios adicionais de desempate, 
-                  sempre visando a justiça e transparência do processo.
-                </p>
-              </div>
-            </div>
-
-            {/* Seção 5 */}
-            <div>
-              <h2 className="text-2xl font-medium text-gray-900 mb-4 flex items-center gap-3">
-                <span className="text-red-600">5.</span>
-                Disposições Gerais
-              </h2>
-              <div className="space-y-3 text-gray-700 leading-relaxed ml-8">
-                <p>• A organização do evento reserva-se o direito de alterar este regulamento a qualquer momento, mediante comunicação prévia aos participantes.</p>
-                <p>• Casos omissos serão resolvidos pela organização do Bingo dos Nietenses 2025.</p>
-                <p>• Dúvidas sobre o regulamento podem ser esclarecidas junto à organização antes do início do evento.</p>
               </div>
             </div>
 
