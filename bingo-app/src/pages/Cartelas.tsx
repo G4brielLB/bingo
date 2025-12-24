@@ -38,13 +38,6 @@ export default function Cartelas() {
     }
   ]
 
-  const handleWhatsAppClick = (plan: typeof plans[0]) => {
-    const phoneNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5500000000000'
-    const message = encodeURIComponent(
-      `Olá! Gostaria de comprar ${plan.cartelas} ${plan.cartelas === 1 ? 'cartela' : 'cartelas'} do Bingo dos Nietenses por R$ ${plan.preco},00. 🎄`
-    )
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank')
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
