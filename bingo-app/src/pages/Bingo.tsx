@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Navigation from '../components/Navigation'
+import Footer from '../components/Footer'
 import { supabase } from '../lib/supabaseClient'
 import type { Database } from '../types/database'
 
@@ -79,6 +81,13 @@ export default function BingoLive() {
         { event: 'INSERT', schema: 'public', table: 'bolas_sorteadas' },
         (payload) => {
           setBolas((prev) => [payload.new as BolasSorteadas, ...prev])
+        }
+      )
+      .on(
+        'postgres_changes',
+        { event: 'DELETE', schema: 'public', table: 'bolas_sorteadas' },
+        (payload) => {
+          setBolas((prev) => prev.filter((b) => b.id !== (payload.old as BolasSorteadas).id))
         }
       )
       .subscribe()
@@ -187,22 +196,7 @@ export default function BingoLive() {
   // Estado: Bingo em andamento
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header com botão voltar */}
-      <div className="bg-white border-b border-gray-200 p-6 md:p-8">
-        <div className="container mx-auto flex items-center justify-between">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-3 text-gray-900 hover:text-red-700 transition-colors duration-300 text-lg"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            <span className="font-medium">Voltar para Página Inicial</span>
-          </Link>
-          <h1 className="text-xl md:text-2xl font-light text-gray-900">Bingo ao Vivo</h1>
-          <div className="w-32 md:w-44"></div> {/* Spacer para centralizar título */}
-        </div>
-      </div>
+      <Navigation />
 
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -314,6 +308,8 @@ export default function BingoLive() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   )
 }
