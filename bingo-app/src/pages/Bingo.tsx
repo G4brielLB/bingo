@@ -203,10 +203,10 @@ export default function BingoLive() {
           {/* Coluna Principal - Bolas Sorteadas */}
           <div className="lg:col-span-2 space-y-6">
             {/* Última Bola */}
-            <div className="bg-red-700 rounded-2xl p-8 md:p-12 text-center shadow-sm border-2 border-red-800">
-              <p className="text-red-100 text-lg md:text-xl mb-4 font-medium">Última Bola Sorteada</p>
-              <div className="w-32 h-32 md:w-40 md:h-40 mx-auto bg-white rounded-full flex items-center justify-center shadow-md border-4 border-red-800">
-                <span className="text-6xl md:text-7xl font-medium text-gray-900">
+            <div className="bg-gradient-to-br from-red-700 to-red-900 rounded-2xl p-8 md:p-12 text-center shadow-lg">
+              <p className="text-red-100 text-lg md:text-xl mb-6 font-medium">Última Bola Sorteada</p>
+              <div className="w-32 h-32 md:w-40 md:h-40 mx-auto bg-white rounded-full flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.4),inset_0_-4px_8px_rgba(0,0,0,0.2),inset_0_4px_8px_rgba(255,255,255,0.9)]">
+                <span className="text-6xl md:text-7xl font-bold text-gray-900">
                   {ultimasCinco[0]?.numero || '-'}
                 </span>
               </div>
@@ -220,9 +220,9 @@ export default function BingoLive() {
                   {ultimasCinco.slice(1, 5).map((bola) => (
                     <div
                       key={bola.id}
-                      className="bg-gray-50 rounded-lg p-4 flex items-center justify-center hover:bg-gray-100 transition-colors duration-300 border border-gray-200"
+                      className="aspect-square bg-white rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-300 shadow-[0_6px_16px_rgba(0,0,0,0.3),inset_0_-3px_6px_rgba(0,0,0,0.15),inset_0_3px_6px_rgba(255,255,255,0.8)]"
                     >
-                      <span className="text-3xl font-medium text-gray-900">{bola.numero}</span>
+                      <span className="text-3xl font-bold text-gray-900">{bola.numero}</span>
                     </div>
                   ))}
                 </div>
@@ -255,9 +255,9 @@ export default function BingoLive() {
                   {bolas.map((bola) => (
                     <div
                       key={bola.id}
-                      className="bg-gray-50 rounded-lg p-3 flex items-center justify-center aspect-square hover:bg-gray-100 transition-colors duration-300 border border-gray-200"
+                      className="aspect-square bg-white rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-300 shadow-[0_6px_16px_rgba(0,0,0,0.3),inset_0_-3px_6px_rgba(0,0,0,0.15),inset_0_3px_6px_rgba(255,255,255,0.8)]"
                     >
-                      <span className="text-xl font-medium text-gray-900">{bola.numero}</span>
+                      <span className="text-xl font-bold text-gray-900">{bola.numero}</span>
                     </div>
                   ))}
                 </div>

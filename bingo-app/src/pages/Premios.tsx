@@ -27,7 +27,7 @@ type PremiosChangePayload = {
 const premioConfig: Record<string, { descricao: string; imagem: string; corFundo: string; tipoLabel: string }> = {
   coluna1: {
     tipoLabel: 'Primeira Coluna Completa',
-    descricao: 'Café gourmet Baobá (Clássico) para começar o dia com energia e sabor especial.',
+    descricao: 'Café gourmet Baobá (Café Especiais - Clássico) para começar o dia com energia e sabor especial.',
     imagem: '/premios/cafe.jpeg',
     corFundo: 'bg-red-600'
   },
@@ -45,7 +45,7 @@ const premioConfig: Record<string, { descricao: string; imagem: string; corFundo
   },
   linha2: {
     tipoLabel: 'Segunda Linha Completa',
-    descricao: 'Kit exclusivo de amostras Principia com produtos selecionados.',
+    descricao: 'Kit exclusivo de amostras Principia com produtos selecionados por uma dermatologista top!.',
     imagem: '/premios/kit_principia.jpeg',
     corFundo: 'bg-stone-700'
   },

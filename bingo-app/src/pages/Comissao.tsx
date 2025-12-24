@@ -319,10 +319,8 @@ export default function Comissao() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Coluna Esquerda - Mobile e Desktop */}
-          <div className="space-y-6">
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="space-y-6">
             {/* Sortear Bola */}
             <div className="bg-white rounded-xl shadow-lg p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">Sortear Nova Bola</h2>
@@ -377,18 +375,18 @@ export default function Comissao() {
                     <div key={bola.id} className="relative group">
                       <div className={`
                         aspect-square rounded-full flex items-center justify-center
-                        text-2xl font-bold shadow-lg cursor-pointer
+                        text-2xl font-bold cursor-pointer
                         transition-all duration-300 hover:scale-110
                         ${index === 0 && !showAllBolas
-                          ? 'bg-gradient-to-br from-yellow-400 to-yellow-600 text-gray-900 ring-4 ring-yellow-300 scale-110'
-                          : 'bg-gradient-to-br from-gray-700 to-gray-900 text-white'
+                          ? 'bg-white text-gray-900 shadow-[0_8px_20px_rgba(251,191,36,0.5),0_6px_16px_rgba(0,0,0,0.3),inset_0_-3px_6px_rgba(0,0,0,0.15),inset_0_3px_6px_rgba(255,255,255,0.9)] ring-4 ring-yellow-400 scale-110'
+                          : 'bg-white text-gray-900 shadow-[0_6px_16px_rgba(0,0,0,0.3),inset_0_-3px_6px_rgba(0,0,0,0.15),inset_0_3px_6px_rgba(255,255,255,0.8)]'
                         }
                       `}>
                         {bola.numero}
                       </div>
                       <button
                         onClick={() => removerBola(bola.id, bola.numero)}
-                        className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg"
+                        className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg hover:bg-red-700"
                         title="Remover"
                       >
                         ×
@@ -399,15 +397,12 @@ export default function Comissao() {
               )}
             </div>
 
-            {/* Grid de Bolas (Desktop) */}
-            <div className="hidden lg:block">
-              <BingoGrid bolasSorteadas={numerosBolas} />
-            </div>
+          {/* Grid de Bolas (Desktop) */}
+          <div className="hidden lg:block">
+            <BingoGrid bolasSorteadas={numerosBolas} />
           </div>
 
-          {/* Coluna Direita - Prêmios */}
-          <div className="space-y-6">
-            {/* Controles */}
+          {/* Controles */}
             <div className="bg-white rounded-xl shadow-lg p-6">
               <button
                 onClick={reiniciarBingo}
@@ -468,7 +463,6 @@ export default function Comissao() {
                 ))}
               </div>
             </div>
-          </div>
         </div>
       </div>
 
