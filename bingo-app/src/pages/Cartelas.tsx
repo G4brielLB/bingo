@@ -23,7 +23,7 @@ export default function Cartelas() {
       precoOriginal: 30,
       desconto: null,
       badge: 'PAGUE 2 LEVE 3',
-      popular: true,
+      popular: false,
       cor: 'green'
     },
     {
@@ -92,7 +92,11 @@ export default function Cartelas() {
               >
                 {/* Badge */}
                 {plan.badge && (
-                  <div className={`absolute -top-4 left-1/2 -translate-x-1/2 bg-${plan.cor}-600 text-white px-4 py-1 rounded-full text-xs font-medium shadow-lg`}>
+                  <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold shadow-lg ${
+                    plan.cor === 'green' ? 'bg-green-600 text-white' :
+                    plan.cor === 'yellow' ? 'bg-amber-500 text-gray-900' :
+                    'bg-red-600 text-white'
+                  }`}>
                     {plan.badge}
                   </div>
                 )}
