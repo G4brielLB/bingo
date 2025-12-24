@@ -4,16 +4,6 @@ import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
 import { supabase } from '../lib/supabaseClient'
 
-interface Premio {
-  id: string
-  nome: string
-  tipo: string
-  descricao: string
-  imagem: string
-  corFundo: string
-  tipoLabel: string
-}
-
 interface PremioSupabase {
   id: number
   nome: string
@@ -21,72 +11,69 @@ interface PremioSupabase {
   entregue: boolean
 }
 
-export default function Premios() {
-  const [premiosEntregues, setPremiosEntregues] = useState<Set<string>>(new Set())
-  const [loading, setLoading] = useState(true)
+interface PremioCompleto extends PremioSupabase {
+  descricao: string
+  imagem: string
+  corFundo: string
+  tipoLabel: string
+}
 
-  // Definição estática dos prêmios com todas as informações visuais
-  const premios: Premio[] = [
-    {
-      id: 'coluna1',
-      nome: 'Smart Watch Premium',
-      tipo: 'coluna1',
-      tipoLabel: 'Primeira Coluna Completa',
-      descricao: 'Um smartwatch de última geração para você monitorar sua saúde e receber notificações com estilo.',
-      imagem: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80',
-      corFundo: 'bg-red-600'
-    },
-    {
-      id: 'coluna2',
-      nome: 'Fone Bluetooth Premium',
-      tipo: 'coluna2',
-      tipoLabel: 'Segunda Coluna Completa',
-      descricao: 'Fones de ouvido wireless com cancelamento de ruído para uma experiência sonora imersiva.',
-      imagem: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80',
-      corFundo: 'bg-green-700'
-    },
-    {
-      id: 'linha1',
-      nome: 'Cesta de Natal Especial',
-      tipo: 'linha1',
-      tipoLabel: 'Primeira Linha Completa',
-      descricao: 'Uma cesta recheada com delícias natalinas, vinhos, chocolates e produtos selecionados.',
-      imagem: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=400&q=80',
-      corFundo: 'bg-amber-700'
-    },
-    {
-      id: 'linha2',
-      nome: 'Kit Churrasco Completo',
-      tipo: 'linha2',
-      tipoLabel: 'Segunda Linha Completa',
-      descricao: 'Kit profissional para churrasco com facas, tábua, espetos e acessórios de alta qualidade.',
-      imagem: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80',
-      corFundo: 'bg-stone-700'
-    },
-    {
-      id: 'cartela_cheia',
-      nome: 'TV Smart 43" 4K',
-      tipo: 'cartela_cheia',
-      tipoLabel: 'Cartela Cheia - Grande Prêmio!',
-      descricao: 'Uma Smart TV 4K de 43 polegadas para você assistir seus programas favoritos com qualidade excepcional.',
-      imagem: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&q=80',
-      corFundo: 'bg-red-700'
-    }
-  ]
+// Mapeamento de informações visuais por tipo de prêmio
+const premioConfig: Record<string, { descricao: string; imagem: string; corFundo: string; tipoLabel: string }> = {
+  coluna1: {
+    tipoLabel: 'Primeira Coluna Completa',
+    descricao: 'Café gourmet Baobá (Clássico) para começar o dia com energia e sabor especial.',
+    imagem: '/premios/cafe.jpeg',
+    corFundo: 'bg-red-600'
+  },
+  coluna2: {
+    tipoLabel: 'Segunda Coluna Completa',
+    descricao: 'Delicioso Chocotone da Brasil Cacau para adoçar suas festas de fim de ano.',
+    imagem: '/premios/chocotone.jpeg',
+    corFundo: 'bg-green-700'
+  },
+  linha1: {
+    tipoLabel: 'Primeira Linha Completa',
+    descricao: 'Linda caneca com trufas Cacau Show, perfeita para presentear ou se presentear.',
+    imagem: '/premios/caneca.jpeg',
+    corFundo: 'bg-amber-700'
+  },
+  linha2: {
+    tipoLabel: 'Segunda Linha Completa',
+    descricao: 'Kit exclusivo de amostras Principia com produtos selecionados.',
+    imagem: '/premios/kit_principia.jpeg',
+    corFundo: 'bg-stone-700'
+  },
+  cartela_cheia: {
+    tipoLabel: 'Cartela Cheia - Grande Prêmio!',
+    descricao: 'Pix de R$ 100,00 para você usar como quiser! O dinheiro cai direto na sua conta.',
+    imagem: '/premios/tio_patinhas.jpg',
+    corFundo: 'bg-red-700'
+  }
+}
+
+export default function Premios() {
+  const [premios, setPremios] = useState<PremioCompleto[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchPremios = async () => {
       try {
+        // Buscar todos os prêmios do Supabase
         const { data, error } = await supabase
           .from('premios')
           .select('*')
-          .eq('entregue', true)
+          .order('id', { ascending: true })
 
         if (error) throw error
 
         if (data) {
-          const entregues = new Set(data.map((p: PremioSupabase) => p.tipo))
-          setPremiosEntregues(entregues)
+          // Combinar dados do Supabase com informações visuais
+          const premiosCompletos: PremioCompleto[] = data.map((p: PremioSupabase) => ({
+            ...p,
+            ...premioConfig[p.tipo]
+          }))
+          setPremios(premiosCompletos)
         }
       } catch (error) {
         console.error('Erro ao buscar prêmios:', error)
@@ -101,11 +88,16 @@ export default function Premios() {
     const channel = supabase
       .channel('premios-updates')
       .on('postgres_changes', 
-        { event: 'UPDATE', schema: 'public', table: 'premios' },
+        { event: '*', schema: 'public', table: 'premios' },
         (payload: any) => {
-          if (payload.new.entregue) {
-            setPremiosEntregues(prev => new Set([...prev, payload.new.tipo]))
-          }
+          // Atualizar o prêmio específico que mudou
+          setPremios(prev => 
+            prev.map(p => 
+              p.id === payload.new.id 
+                ? { ...p, ...payload.new }
+                : p
+            )
+          )
         }
       )
       .subscribe()
@@ -143,7 +135,7 @@ export default function Premios() {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
               {premios.map((premio, index) => {
-                const foiEntregue = premiosEntregues.has(premio.tipo)
+                const foiEntregue = premio.entregue
                 
                 return (
                   <div

@@ -4,13 +4,12 @@
 -- Limpar prêmios existentes (opcional - remova se quiser manter dados antigos)
 -- DELETE FROM premios;
 
--- Inserir os 5 prêmios do Bingo dos Nietenses 2025
+-- Inserir os 5 prêmios do Bingo dos Nietenses 2025 (ordem corrigida)
 INSERT INTO premios (nome, tipo, entregue) VALUES
-  ('Smart Watch Premium', 'coluna1', false),
-  ('Fone Bluetooth Premium', 'coluna2', false),
-  ('Cesta de Natal Especial', 'linha1', false),
-  ('Kit Churrasco Completo', 'linha2', false),
-  ('TV Smart 43" 4K', 'cartela_cheia', false);
+    ('Pacote de Café Baobá (Clássico)', 'coluna1', false),
+    ('Chocotone (Brasil Cacau)', 'coluna2', false),
+    ('Caneca com Trufas (Cacau Show)', 'linha1', false),
+    ('Kit de Amostras (Principia)', 'linha2', false),
+    ('Pix de R$ 100,00', 'cartela_cheia', false);
 
--- Verificar se os prêmios foram inseridos corretamente
 SELECT * FROM premios ORDER BY id;

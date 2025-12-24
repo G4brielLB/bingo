@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import './test-supabase'
 
 // Lazy loading com fallback para named/default exports
 const Home = lazy(() => import('./pages/Home.tsx'))
